@@ -17,14 +17,17 @@ def Triangulate(matrix, b):
 
 #to solve Ux = b
 def BackwardSub(U,b):
-    x =[]
     n= len(U)
+    x =[0]*n
+    
     x[n-1] = b[n-1]/U[n-1][n-1]
     for i in range(n-2,-1,-1):
-        curr = b[i]
+        x[i] = b[i]
         for j in range(i+1,n):
-            curr = curr - (U[i][j]*x[j])
+            x[i] = x[i] - (U[i][j]*x[j])
+        x[i] = x[i]/U[i][i]
     return x
+
 
 
 
@@ -37,12 +40,6 @@ def BackwardSub(U,b):
 matrix = [[10,2,-1],[-3,-5,2],[1,1,6]]
 b = [27,-61.5,-21.5]
 lower = Triangulate(matrix,b)
-print(matrix[0])
-print(matrix[1])
-print(matrix[2])
-print("\n\n")
-print(lower[0])
-print(lower[1])
-print(lower[2])
-print("\n\n")
-print(b)
+sol = BackwardSub(matrix, b)
+print(sol)
+
