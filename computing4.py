@@ -15,6 +15,20 @@ def Triangulate(matrix, b):
             lower[row][col] = mult
     return lower
 
+#to solve Ux = b
+def BackwardSub(U,b):
+    x =[]
+    n= len(U)
+    x[n-1] = b[n-1]/U[n-1][n-1]
+    for i in range(n-2,-1,-1):
+        curr = b[i]
+        for j in range(i+1,n):
+            curr = curr - (U[i][j]*x[j])
+    return x
+
+
+
+
 
 
 
