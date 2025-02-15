@@ -28,6 +28,18 @@ def BackwardSub(U,b):
         x[i] = x[i]/U[i][i]
     return x
 
+def FowardSub(L,b):
+    n= len(L)
+    x =[0]*n
+    
+    x[0] = b[0]/L[0][0]
+    for i in range(1,n):
+        x[i] = b[i]
+        for j in range(0,i):
+            x[i] = x[i] - (L[i][j]*x[j])
+        x[i] = x[i]/L[i][i]
+    return x
+
 
 
 
@@ -39,7 +51,10 @@ def BackwardSub(U,b):
 
 matrix = [[10,2,-1],[-3,-5,2],[1,1,6]]
 b = [27,-61.5,-21.5]
+b2 = [27,-61.5,-21.5]
 lower = Triangulate(matrix,b)
 sol = BackwardSub(matrix, b)
+sol2 = FowardSub(lower,b2)
 print(sol)
+print(sol2)
 
