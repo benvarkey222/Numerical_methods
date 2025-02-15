@@ -11,7 +11,7 @@ def Triangulate(matrix, b):
             mult = matrix[row][col]/matrix[col][col]
             for rIndex in range(col, len(matrix[0])):
                 matrix[row][rIndex] = matrix[row][rIndex] - mult*matrix[col][rIndex]
-            b[row] = b[row] - mult*b[col]
+            #b[row] = b[row] - mult*b[col]
             lower[row][col] = mult
     return lower
 
@@ -40,10 +40,11 @@ def FowardSub(L,b):
         x[i] = x[i]/L[i][i]
     return x
 
-
-
-
-
+def LUSolve(A, b):
+    lower=Triangulate(A,b)
+    y = FowardSub(lower, b)
+    print(y)
+    return BackwardSub(A,y)
 
 
 
@@ -51,10 +52,7 @@ def FowardSub(L,b):
 
 matrix = [[10,2,-1],[-3,-5,2],[1,1,6]]
 b = [27,-61.5,-21.5]
-b2 = [27,-61.5,-21.5]
-lower = Triangulate(matrix,b)
-sol = BackwardSub(matrix, b)
-sol2 = FowardSub(lower,b2)
+sol = LUSolve(matrix, b)
 print(sol)
-print(sol2)
+
 
