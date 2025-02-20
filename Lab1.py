@@ -1,10 +1,5 @@
 import numpy as np
 
-
-def Gauss(Matrix, b):
-    return 0
-
-
 def FowardElim(A,b):
     n= len(A)
     l = list(range(n)) #row indexes
