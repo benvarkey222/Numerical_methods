@@ -46,7 +46,7 @@ def FowardSub(L,b):
     return x
 
 def LUSolve(A, b):
-    lower=Triangulate(A,b)
+    lower=Triangulate(A)
     y = FowardSub(lower, b)
     print(y)
     return BackwardSub(A,y)
@@ -140,21 +140,67 @@ def matrix_mult(A, B):
                 product[r,c] = sum(row_A*col_B)
     return product
 
-
+print("Prob 1.1:")
+matrix = np.array([[5,7,6,5],[7,10,8,7],[6,8,10,9],[5,7,9,10]])
+lD = [1,1,1,1]
+uD = [0,0,0,0]
+L,U = Doolittle(matrix,uD,lD)
+print("L:", L)
+print("U: ", U)
+print("LU: ", matrix_mult(L,U))
+print("\nProb 1.2:")
+matrix = np.array([[5,7,6,5],[7,10,8,7],[6,8,10,9],[5,7,9,10]])
+lD = [0,0,0,0]
+uD = [1,1,1,1]
+L,U = Doolittle(matrix,uD,lD)
+print("L:", L)
+print("U: ", U)
+print("LU: ", matrix_mult(L,U))
+print("\nProb 1.3:")
+matrix = np.array([[5,7,6,5],[7,10,8,7],[6,8,10,9],[5,7,9,10]])
+lD = [1,0,1,0]
+uD = [0,1, 0, 1]
+L,U = Doolittle(matrix,uD,lD)
+print("L:", L)
+print("U: ", U)
+print("LU: ", matrix_mult(L,U))
+print("\nProb 1.4:")
+matrix = np.array([[5,7,6,5],[7,10,8,7],[6,8,10,9],[5,7,9,10]])
+lD = [0,1,0,1]
+uD = [1,0, 1, 0]
+L,U = Doolittle(matrix,uD,lD)
+print("L:", L)
+print("U: ", U)
+print("LU: ", matrix_mult(L,U))
+print("\nProb 1.5:")
 matrix = np.array([[5,7,6,5],[7,10,8,7],[6,8,10,9],[5,7,9,10]])
 lD = [0,0,7,9]
 uD = [3,5, 0, 0]
 L,U = Doolittle(matrix,uD,lD)
 print("L:", L)
 print("U: ", U)
-print(matrix_mult(L,U))
+print("LU: ", matrix_mult(L,U))
 
+print("\nProblem 2:")
+matrix = [[10,2,-1],[-3,-5,2],[1,1,6]]
+b = [27,-61.5,-21.5]
+x = Gauss(matrix,b)
+print("A: ", matrix[0], "\n", matrix[1], "\n", matrix[2], "\n")
+print("b: ",b, "\n")
+print("sol: ", x)
 
-# matrix = [[1,0,1/3,0],[0,1,3,-1],[3,-3,0,6],[0,2,4,-6]]
-# # b = [27,-61.5,-21.5]
-# lower = Triangulate(matrix)
-# print(matrix)
-# print("\n\n")
-# print(lower)
+print("\nProblem: 3:")
+matrix = [[10,2,-1],[-3,-5,2],[1,1,6]]
+lower =Triangulate(matrix)
+print("L: ", lower[0], "\n", lower[1], "\n", lower[2], "\n")
+print("U: ", matrix[0], "\n", matrix[1], "\n", matrix[2], "\n")
+
+print("\nProblem 4: ")
+matrix = [[10,2,-1],[-3,-5,2],[1,1,6]]
+b = [27,-61.5,-21.5]
+x = LUSolve(matrix,b)
+print("A: ", matrix[0], "\n", matrix[1], "\n", matrix[2], "\n")
+print("b: ",b, "\n")
+print("sol: ", x)
 
 
