@@ -99,39 +99,30 @@ def Doolittle(A, uD, lD):
         if U[k,k]!=0: #defined in uD
             for i in range(k, n):
                 l_entry = A[i,k]
-                for m in range(0, k-2): #check indices
+                for m in range(0, k): #check indices
+                    #l_entry = l_entry - L[i]@U[:k]
                     l_entry= l_entry - (L[i,m]*U[m,k])
                 l_entry = l_entry/U[k,k]
                 L[i,k] = l_entry
             for j in range(k+1, n):
                 u_entry = A[k,j]
-                for m in range(0, k-2): #check indices
-                    if L[k][m] == 0:
-                        print("l none")
-                        print(m)
-                        print(k)
-                    elif U[m][j] ==0:
-                        print("u none")
-                    u_entry= u_entry - (L[k,m]*U[m,j])
+                for m in range(0, k): #check indices
+                    #u_entry = u_entry - L[k]@U[:j]
+                    u_entry = u_entry - (L[k,m]*U[m,j])
                 u_entry = u_entry/L[k,k]
-                U[k,j] = u_entry
-                
+                U[k,j] = u_entry        
         elif L[k,k] != 0 : #defined in lD
             for j in range(k, n):
                 u_entry = A[k,j]
-                for m in range(0, k-2): #check indices
-                    if L[k][m] == 0:
-                        print("l none")
-                        print(m)
-                        print(k)
-                    elif U[m][j] ==0:
-                        print("u none")
+                for m in range(0, k): #check indices
+                    #u_entry = u_entry - L[k]@U[:j]
                     u_entry= u_entry - (L[k,m]*U[m,j])
                 u_entry = u_entry/L[k,k]
                 U[k,j] = u_entry
             for i in range(k+1, n):
                 l_entry = A[i,k]
-                for m in range(0, k-2): #check indices
+                for m in range(0, k): #check indices
+                    #l_entry = l_entry - L[i]@U[:k]
                     l_entry= l_entry - (L[i,m]*U[m,k])
                 l_entry = l_entry/U[k,k]
                 L[i,k] = l_entry    
@@ -151,8 +142,8 @@ def matrix_mult(A, B):
 
 
 matrix = np.array([[5,7,6,5],[7,10,8,7],[6,8,10,9],[5,7,9,10]])
-lD = [1,1,1,1]
-uD = [0, 0, 0, 0]
+lD = [0,0,7,9]
+uD = [3,5, 0, 0]
 L,U = Doolittle(matrix,uD,lD)
 print("L:", L)
 print("U: ", U)
