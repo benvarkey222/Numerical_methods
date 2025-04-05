@@ -43,8 +43,8 @@ def DividedDifferences_Eval(a, t, x):
 
 
 # #Lagrange
-data1= [(0,7),(2,11),(3,28),(4,63)]
-t = 34.32
+data1= [(-31,-2),(-5,-1),(1,1),(11,2),(61,3)]
+t = 0
 print("Lagrange: ", Lagrange(data1,t))
 #DD
 a= DividedDifferences_Coeff(data1)
@@ -59,10 +59,10 @@ print("Divided Differences: ", DividedDifferences_Eval(a,t,x))
 # x = [data2[i][0] for i in range(len(data2))]
 # print(DividedDifferences_Eval(a,t,x))
 # #Lagrange
-data2= [(.25,-2),(.125,-3),(.0625,-4)]
-t = .1854
-print("Lagrange: ", Lagrange(data2,t))
-#DD
-a= DividedDifferences_Coeff(data2)
-x = [data2[i][0] for i in range(len(data2))]
-print("Divided Differences: ", DividedDifferences_Eval(a,t,x))
+# data2= [(.25,-2),(.125,-3),(.0625,-4)]
+# t = .1854
+# print("Lagrange: ", Lagrange(data2,t))
+# #DD
+# a= DividedDifferences_Coeff(data2)
+# x = [data2[i][0] for i in range(len(data2))]
+# print("Divided Differences: ", DividedDifferences_Eval(a,t,x))
